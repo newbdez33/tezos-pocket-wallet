@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		853046C8252DB27A0045DC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046C7252DB27A0045DC7E /* ContentView.swift */; };
 		853046CA252DB27C0045DC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853046C9252DB27C0045DC7E /* Assets.xcassets */; };
 		853046CD252DB27C0045DC7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853046CC252DB27C0045DC7E /* Preview Assets.xcassets */; };
+		853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 853046D6252DB2BD0045DC7E /* TezosSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +87,9 @@
 			dependencies = (
 			);
 			name = wallet;
+			packageProductDependencies = (
+				853046D6252DB2BD0045DC7E /* TezosSwift */,
+			);
 			productName = wallet;
 			productReference = 853046C2252DB27A0045DC7E /* wallet.app */;
 			productType = "com.apple.product-type.application";
@@ -112,6 +117,9 @@
 				Base,
 			);
 			mainGroup = 853046B9252DB27A0045DC7E;
+			packageReferences = (
+				853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */,
+			);
 			productRefGroup = 853046C3252DB27A0045DC7E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -328,6 +336,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/newbdez33/TezosSwift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		853046D6252DB2BD0045DC7E /* TezosSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */;
+			productName = TezosSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 853046BA252DB27A0045DC7E /* Project object */;
 }
