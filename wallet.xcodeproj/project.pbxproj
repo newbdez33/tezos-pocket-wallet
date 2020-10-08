@@ -12,6 +12,12 @@
 		853046CA252DB27C0045DC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853046C9252DB27C0045DC7E /* Assets.xcassets */; };
 		853046CD252DB27C0045DC7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853046CC252DB27C0045DC7E /* Preview Assets.xcassets */; };
 		853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 853046D6252DB2BD0045DC7E /* TezosSwift */; };
+		853046DD252EB8DB0045DC7E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046DC252EB8DB0045DC7E /* Constants.swift */; };
+		853046E3252ECEF00045DC7E /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046E2252ECEF00045DC7E /* Portfolio.swift */; };
+		853046E7252ECFB30045DC7E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046E6252ECFB30045DC7E /* Settings.swift */; };
+		853046EA252ED4D60045DC7E /* TezosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046E9252ED4D60045DC7E /* TezosService.swift */; };
+		853046EE252EEF720045DC7E /* OneStore in Frameworks */ = {isa = PBXBuildFile; productRef = 853046ED252EEF720045DC7E /* OneStore */; };
+		853046F2252EEF9D0045DC7E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046F1252EEF9D0045DC7E /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +27,11 @@
 		853046C9252DB27C0045DC7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		853046CC252DB27C0045DC7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		853046CE252DB27C0045DC7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		853046DC252EB8DB0045DC7E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		853046E2252ECEF00045DC7E /* Portfolio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Portfolio.swift; sourceTree = "<group>"; };
+		853046E6252ECFB30045DC7E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		853046E9252ED4D60045DC7E /* TezosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TezosService.swift; sourceTree = "<group>"; };
+		853046F1252EEF9D0045DC7E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +40,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */,
+				853046EE252EEF720045DC7E /* OneStore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,8 +66,12 @@
 		853046C4252DB27A0045DC7E /* wallet */ = {
 			isa = PBXGroup;
 			children = (
+				853046DA252EB83F0045DC7E /* Services */,
+				853046F0252EEF8E0045DC7E /* Models */,
+				853046DB252EB8BA0045DC7E /* Views */,
 				853046C5252DB27A0045DC7E /* walletApp.swift */,
 				853046C7252DB27A0045DC7E /* ContentView.swift */,
+				853046DC252EB8DB0045DC7E /* Constants.swift */,
 				853046C9252DB27C0045DC7E /* Assets.xcassets */,
 				853046CE252DB27C0045DC7E /* Info.plist */,
 				853046CB252DB27C0045DC7E /* Preview Content */,
@@ -69,6 +85,47 @@
 				853046CC252DB27C0045DC7E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		853046DA252EB83F0045DC7E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				853046E9252ED4D60045DC7E /* TezosService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		853046DB252EB8BA0045DC7E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				853046E1252ECEE20045DC7E /* Settings */,
+				853046E0252ECED70045DC7E /* Portfolio */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		853046E0252ECED70045DC7E /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				853046E2252ECEF00045DC7E /* Portfolio.swift */,
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		853046E1252ECEE20045DC7E /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				853046E6252ECFB30045DC7E /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		853046F0252EEF8E0045DC7E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				853046F1252EEF9D0045DC7E /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,6 +146,7 @@
 			name = wallet;
 			packageProductDependencies = (
 				853046D6252DB2BD0045DC7E /* TezosSwift */,
+				853046ED252EEF720045DC7E /* OneStore */,
 			);
 			productName = wallet;
 			productReference = 853046C2252DB27A0045DC7E /* wallet.app */;
@@ -119,6 +177,7 @@
 			mainGroup = 853046B9252DB27A0045DC7E;
 			packageReferences = (
 				853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */,
+				853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */,
 			);
 			productRefGroup = 853046C3252DB27A0045DC7E /* Products */;
 			projectDirPath = "";
@@ -146,8 +205,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				853046E3252ECEF00045DC7E /* Portfolio.swift in Sources */,
 				853046C8252DB27A0045DC7E /* ContentView.swift in Sources */,
 				853046C6252DB27A0045DC7E /* walletApp.swift in Sources */,
+				853046EA252ED4D60045DC7E /* TezosService.swift in Sources */,
+				853046DD252EB8DB0045DC7E /* Constants.swift in Sources */,
+				853046E7252ECFB30045DC7E /* Settings.swift in Sources */,
+				853046F2252EEF9D0045DC7E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +410,14 @@
 				kind = branch;
 			};
 		};
+		853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/newbdez33/OneStore";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -353,6 +425,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */;
 			productName = TezosSwift;
+		};
+		853046ED252EEF720045DC7E /* OneStore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */;
+			productName = OneStore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

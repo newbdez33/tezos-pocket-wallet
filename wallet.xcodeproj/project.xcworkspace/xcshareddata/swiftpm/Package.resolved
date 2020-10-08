@@ -29,6 +29,15 @@
         }
       },
       {
+        "package": "OneStore",
+        "repositoryURL": "https://github.com/newbdez33/OneStore",
+        "state": {
+          "branch": "master",
+          "revision": "ecc0a0f5607c4b55cae6642c12841d3de813e47f",
+          "version": null
+        }
+      },
+      {
         "package": "Sodium",
         "repositoryURL": "https://github.com/jedisct1/swift-sodium",
         "state": {
