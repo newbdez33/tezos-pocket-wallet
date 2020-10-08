@@ -1,0 +1,1 @@
+# tezos-pocket-wallet
