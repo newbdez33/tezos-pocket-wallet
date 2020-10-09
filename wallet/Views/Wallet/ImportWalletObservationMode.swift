@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ImportWalletObservationMode: View {
-    @State private var key:String = "tz1dwzRWV7Abb1DsgKeYNXmzhVhx2QzfPN9z"
+    @State private var key:String = ""
     var body: some View {
         NavigationView {
             VStack(alignment:.leading) {

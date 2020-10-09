@@ -39,12 +39,30 @@ public class TezosService: ObservableObject {
         return wallet != nil
     }
     
+    @discardableResult
+    public func createWallet(_ password:String) -> Bool {
+        if let w = Wallet(passphrase: password) {
+            wallet = w
+            fetchBalance()
+            return true
+        }
+        return false
+    }
+    
     public func fetchBalance() {
-        guard let pkh = User.pkh.value else {
-            print("pkh is missing")
+        var addr = ""
+        if isObservationMode {
+            guard let pkh = User.pkh.value else {
+                print("pkh is missing")
+                return
+            }
+            addr = pkh
+        }
+        guard let ad = wallet?.address else {
             return
         }
-        tezos?.balance(of: pkh, completion: { result in
+        addr = ad
+        tezos?.balance(of: addr, completion: { result in
             switch result {
                 case .success(let balance):
                     DispatchQueue.main.async {
