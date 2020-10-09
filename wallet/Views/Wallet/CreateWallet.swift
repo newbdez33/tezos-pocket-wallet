@@ -66,8 +66,6 @@ struct CreateWallet: View {
                                 print("Create new wallet failed.")
                             }
                         }
-                        
-                        
                     }
                 }, label: {
                     

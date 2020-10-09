@@ -28,9 +28,9 @@ struct NoWalletView: View {
                 Button("Import wallet") {
                     self.showingImportWallet.toggle()
                 }
-                .sheet(isPresented: $showingImportWallet, content: {
+                .sheet(isPresented: $showingImportWallet) {
                     ImportWallet()
-                })
+                }
                 .font(.appButton)
                 Text("If you have a wallet.")
                     .font(.footnote)
@@ -39,9 +39,9 @@ struct NoWalletView: View {
                 Button("Create wallet") {
                     self.showingCreateWallet.toggle()
                 }
-                .sheet(isPresented: $showingCreateWallet, content: {
+                .sheet(isPresented: $showingCreateWallet) {
                     CreateWallet()
-                })
+                }
                 .font(.appButton)
                 Text("If you don't have a wallet or wish to make a new one.")
                     .font(.footnote)

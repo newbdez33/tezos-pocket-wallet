@@ -29,6 +29,7 @@
 		857D79A125306501002FDA3D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 857D79A025306501002FDA3D /* KeychainSwift */; };
 		857D79A425306FD2002FDA3D /* ImportMnemonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79A325306FD2002FDA3D /* ImportMnemonic.swift */; };
 		857D79A825307026002FDA3D /* ImportPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79A725307026002FDA3D /* ImportPrivateKey.swift */; };
+		857D79AC25308D51002FDA3D /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 857D79AB25308D51002FDA3D /* Introspect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				857D79A125306501002FDA3D /* KeychainSwift in Frameworks */,
+				857D79AC25308D51002FDA3D /* Introspect in Frameworks */,
 				853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */,
 				853046EE252EEF720045DC7E /* OneStore in Frameworks */,
 			);
@@ -196,6 +198,7 @@
 				853046D6252DB2BD0045DC7E /* TezosSwift */,
 				853046ED252EEF720045DC7E /* OneStore */,
 				857D79A025306501002FDA3D /* KeychainSwift */,
+				857D79AB25308D51002FDA3D /* Introspect */,
 			);
 			productName = wallet;
 			productReference = 853046C2252DB27A0045DC7E /* wallet.app */;
@@ -228,6 +231,7 @@
 				853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */,
 				853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */,
 				857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				857D79AA25308D51002FDA3D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 853046C3252DB27A0045DC7E /* Products */;
 			projectDirPath = "";
@@ -486,6 +490,14 @@
 				minimumVersion = 19.0.0;
 			};
 		};
+		857D79AA25308D51002FDA3D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -503,6 +515,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		857D79AB25308D51002FDA3D /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 857D79AA25308D51002FDA3D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
