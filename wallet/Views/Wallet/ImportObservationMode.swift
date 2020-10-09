@@ -7,26 +7,26 @@
 
 import SwiftUI
 
-struct ImportWalletObservationMode: View {
+struct ImportObservationMode: View {
     @State private var key:String = ""
     var body: some View {
         NavigationView {
             VStack(alignment:.leading) {
                 ZStack(alignment: .topLeading) {
                     TextEditor(text: $key)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
+                        .font(.appPK)
+                        .foregroundColor(.primary)
                         .disableAutocorrection(true)
                         .onChange(of: key, perform: { value in
                             print(key)
                         })
                         .overlay(
-                            RoundedRectangle(cornerRadius: 4).stroke()
+                            RoundedRectangle(cornerRadius: 7).stroke().foregroundColor(.secondary)
                         )
                         .frame(height:48)
                     if key.isEmpty {
                         Text("Enter the wallet or contract address.")
-                            .font(.caption)
+                            .font(.appPK)
                             .foregroundColor(Color(UIColor.systemGray3))
                             .padding(.leading, 4)
                             .padding(.top, 8)
@@ -41,6 +41,7 @@ struct ImportWalletObservationMode: View {
                         User.pkh.value = key
                         TezosService.shared.isObservationMode = true
                         TezosService.shared.isWalletLoaded = true
+                        TezosService.shared.fetchBalance()
                         NotificationCenter.default.post(name: .importedWallet, object: nil)
                     }else {
                         print("key is not valid: \(key)")
@@ -63,6 +64,6 @@ struct ImportWalletObservationMode: View {
 
 struct ImportWalletObservationMode_Previews: PreviewProvider {
     static var previews: some View {
-        ImportWalletObservationMode()
+        ImportObservationMode()
     }
 }

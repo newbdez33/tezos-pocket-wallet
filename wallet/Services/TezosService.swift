@@ -61,17 +61,16 @@ public class TezosService: ObservableObject {
     
     public func fetchBalance() {
         var addr = ""
-        if isObservationMode {
-            guard let pkh = User.pkh.value else {
-                print("pkh is missing")
+        if let pkh = User.pkh.value {
+            isObservationMode = true
+            addr = pkh
+        }else {
+            guard let ad = wallet?.address else {
                 return
             }
-            addr = pkh
+            addr = ad
         }
-        guard let ad = wallet?.address else {
-            return
-        }
-        addr = ad
+        
         tezos?.balance(of: addr, completion: { result in
             switch result {
                 case .success(let balance):

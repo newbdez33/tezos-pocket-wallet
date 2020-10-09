@@ -12,7 +12,7 @@ struct ImportWallet: View {
         NavigationView {
             VStack(alignment:.leading) {
                 HStack {
-                    Button(action: {}, label: {
+                    NavigationLink(destination: ImportPrivateKey()) {
                         Image(systemName: "wallet.pass")
                         VStack(alignment:.leading) {
                             Text("Private key")
@@ -24,12 +24,12 @@ struct ImportWallet: View {
                             .padding(.leading, 4)
                         Spacer()
                         Image(systemName: "chevron.right")
-                    })
+                    }
                     .foregroundColor(.primary)
                 }
                 Divider()
                 HStack {
-                    Button(action: {}, label: {
+                    NavigationLink(destination: ImportMnemonic()) {
                         Image(systemName: "a.book.closed")
                         VStack(alignment:.leading) {
                             Text("Mnemonic")
@@ -41,12 +41,12 @@ struct ImportWallet: View {
                             .padding(.leading, 4)
                         Spacer()
                         Image(systemName: "chevron.right")
-                    })
+                    }
                     .foregroundColor(.primary)
                 }
                 Divider()
                 HStack {
-                    NavigationLink(destination: ImportWalletObservationMode()) {
+                    NavigationLink(destination: ImportObservationMode()) {
                         Image(systemName: "eye.circle")
                         VStack(alignment:.leading) {
                             Text("Observation mode")

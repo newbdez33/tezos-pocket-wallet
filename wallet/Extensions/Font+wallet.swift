@@ -13,4 +13,10 @@ extension Font {
             return .system(size: 18)
         }
     }
+    
+    static var appPK: Font {
+        get {
+            return .system(size: 14, design: .monospaced)
+        }
+    }
 }
