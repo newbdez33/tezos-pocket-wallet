@@ -18,6 +18,12 @@
 		853046EA252ED4D60045DC7E /* TezosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046E9252ED4D60045DC7E /* TezosService.swift */; };
 		853046EE252EEF720045DC7E /* OneStore in Frameworks */ = {isa = PBXBuildFile; productRef = 853046ED252EEF720045DC7E /* OneStore */; };
 		853046F2252EEF9D0045DC7E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046F1252EEF9D0045DC7E /* User.swift */; };
+		853046F9252F14E50045DC7E /* NoWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046F8252F14E50045DC7E /* NoWalletView.swift */; };
+		853046FD252F169D0045DC7E /* PortfolioHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046FC252F169D0045DC7E /* PortfolioHeader.swift */; };
+		85304700252F2AA50045DC7E /* CreateWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046FF252F2AA50045DC7E /* CreateWallet.swift */; };
+		85304703252F2ABA0045DC7E /* ImportWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85304702252F2ABA0045DC7E /* ImportWallet.swift */; };
+		85304706252FE9FA0045DC7E /* ImportWalletObservationMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85304705252FE9FA0045DC7E /* ImportWalletObservationMode.swift */; };
+		8530470A252FEE080045DC7E /* Font+wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85304709252FEE080045DC7E /* Font+wallet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +38,12 @@
 		853046E6252ECFB30045DC7E /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		853046E9252ED4D60045DC7E /* TezosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TezosService.swift; sourceTree = "<group>"; };
 		853046F1252EEF9D0045DC7E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		853046F8252F14E50045DC7E /* NoWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoWalletView.swift; sourceTree = "<group>"; };
+		853046FC252F169D0045DC7E /* PortfolioHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioHeader.swift; sourceTree = "<group>"; };
+		853046FF252F2AA50045DC7E /* CreateWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateWallet.swift; sourceTree = "<group>"; };
+		85304702252F2ABA0045DC7E /* ImportWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWallet.swift; sourceTree = "<group>"; };
+		85304705252FE9FA0045DC7E /* ImportWalletObservationMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportWalletObservationMode.swift; sourceTree = "<group>"; };
+		85304709252FEE080045DC7E /* Font+wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+wallet.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +78,7 @@
 		853046C4252DB27A0045DC7E /* wallet */ = {
 			isa = PBXGroup;
 			children = (
+				85304708252FEDDA0045DC7E /* Extensions */,
 				853046DA252EB83F0045DC7E /* Services */,
 				853046F0252EEF8E0045DC7E /* Models */,
 				853046DB252EB8BA0045DC7E /* Views */,
@@ -98,6 +111,7 @@
 		853046DB252EB8BA0045DC7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				853046F7252F12A70045DC7E /* Wallet */,
 				853046E1252ECEE20045DC7E /* Settings */,
 				853046E0252ECED70045DC7E /* Portfolio */,
 			);
@@ -108,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				853046E2252ECEF00045DC7E /* Portfolio.swift */,
+				853046FC252F169D0045DC7E /* PortfolioHeader.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -126,6 +141,25 @@
 				853046F1252EEF9D0045DC7E /* User.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		853046F7252F12A70045DC7E /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				853046F8252F14E50045DC7E /* NoWalletView.swift */,
+				853046FF252F2AA50045DC7E /* CreateWallet.swift */,
+				85304702252F2ABA0045DC7E /* ImportWallet.swift */,
+				85304705252FE9FA0045DC7E /* ImportWalletObservationMode.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		85304708252FEDDA0045DC7E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				85304709252FEE080045DC7E /* Font+wallet.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,7 +244,13 @@
 				853046C6252DB27A0045DC7E /* walletApp.swift in Sources */,
 				853046EA252ED4D60045DC7E /* TezosService.swift in Sources */,
 				853046DD252EB8DB0045DC7E /* Constants.swift in Sources */,
+				85304703252F2ABA0045DC7E /* ImportWallet.swift in Sources */,
 				853046E7252ECFB30045DC7E /* Settings.swift in Sources */,
+				85304706252FE9FA0045DC7E /* ImportWalletObservationMode.swift in Sources */,
+				85304700252F2AA50045DC7E /* CreateWallet.swift in Sources */,
+				8530470A252FEE080045DC7E /* Font+wallet.swift in Sources */,
+				853046FD252F169D0045DC7E /* PortfolioHeader.swift in Sources */,
+				853046F9252F14E50045DC7E /* NoWalletView.swift in Sources */,
 				853046F2252EEF9D0045DC7E /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

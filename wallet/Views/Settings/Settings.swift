@@ -14,7 +14,7 @@ struct Settings: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("No settings for now")
+                Text("No content")
             }
             .navigationTitle("Settings")
         }

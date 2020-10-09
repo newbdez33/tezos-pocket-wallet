@@ -12,12 +12,17 @@ public class TezosService: ObservableObject {
     static let shared = TezosService()
     @Published var balance:String = "####"
     
+    public var wallet:Wallet?
     private let tezos:TezosClient?
 
     private init() {
         tezos = TezosClient(remoteNodeURL: Constants.defaultNodeURL)
         
         fetchBalance()
+    }
+    
+    public func hasLocalWallet() -> Bool {
+        return wallet != nil
     }
     
     private func fetchBalance() {
