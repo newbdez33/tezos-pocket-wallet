@@ -12,25 +12,29 @@ struct ImportObservationMode: View {
     var body: some View {
         NavigationView {
             VStack(alignment:.leading) {
+                Text("Observation Mode")
+                    .font(.largeTitle)
+                    .bold()
                 ZStack(alignment: .topLeading) {
+                    if key.isEmpty {
+                        Text("Enter the wallet or contract address.")
+                            .font(.appPK)
+                            .foregroundColor(.primary)
+                            .padding(.leading, 4)
+                            .padding(.top, 8)
+                            .disabled(true)
+                    }
                     TextEditor(text: $key)
                         .font(.appPK)
                         .foregroundColor(.primary)
                         .disableAutocorrection(true)
-                        .onChange(of: key, perform: { value in
-                            print(key)
-                        })
+                        .autocapitalization(.none)
                         .overlay(
                             RoundedRectangle(cornerRadius: 7).stroke().foregroundColor(.secondary)
                         )
                         .frame(height:48)
-                    if key.isEmpty {
-                        Text("Enter the wallet or contract address.")
-                            .font(.appPK)
-                            .foregroundColor(Color(UIColor.systemGray3))
-                            .padding(.leading, 4)
-                            .padding(.top, 8)
-                    }
+                        .opacity(0.8)
+                    
                 }
                 Text("Observation Mode does not require importing a private key.")
                     .font(.footnote)
@@ -58,6 +62,7 @@ struct ImportObservationMode: View {
             }
             .padding()
             .navigationTitle("Observation Mode")
+            .navigationBarHidden(true)
         }
     }
 }

@@ -59,6 +59,18 @@ public class TezosService: ObservableObject {
         return false
     }
     
+    @discardableResult
+    public func importWallet(_ mnemonic:String, _ password:String) -> Bool {
+        if let w = Wallet(mnemonic: mnemonic, passphrase: password), let m = w.mnemonic {
+            wallet = w
+            keychain.set(m, forKey: Constants.keyWalletMnemonic)
+            keychain.set(password, forKey: Constants.keyWalletPassphrase)
+            fetchBalance()
+            return true
+        }
+        return false
+    }
+    
     public func fetchBalance() {
         var addr = ""
         if let pkh = User.pkh.value {
