@@ -10,23 +10,41 @@ import TezosSwift
 
 public class TezosService: ObservableObject {
     static let shared = TezosService()
-    @Published var balance:String = "####"
+    @Published var balance:String = "0"
+    @Published var isObservationMode = false
+    @Published var isWalletLoaded = false
     
     public var wallet:Wallet?
     private let tezos:TezosClient?
+    
 
     private init() {
         tezos = TezosClient(remoteNodeURL: Constants.defaultNodeURL)
-        
+        isObservationMode = User.pkh.value != nil
+        isWalletLoaded = loadLocalWallet()
         fetchBalance()
     }
     
-    public func hasLocalWallet() -> Bool {
+    public func removeWalletFromLocal() {
+        isWalletLoaded = false
+        balance = ""
+        isObservationMode = false
+        wallet = nil
+    }
+    
+    public func loadLocalWallet() -> Bool {
+        if isObservationMode {
+            return true
+        }
         return wallet != nil
     }
     
-    private func fetchBalance() {
-        tezos?.balance(of: "tz1dwzRWV7Abb1DsgKeYNXmzhVhx2QzfPN9z", completion: { result in
+    public func fetchBalance() {
+        guard let pkh = User.pkh.value else {
+            print("pkh is missing")
+            return
+        }
+        tezos?.balance(of: pkh, completion: { result in
             switch result {
                 case .success(let balance):
                     DispatchQueue.main.async {

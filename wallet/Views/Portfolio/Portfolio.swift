@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct Portfolio: View {
-    
+    @ObservedObject var fetcher = TezosService.shared
     var body: some View {
-        if TezosService.shared.hasLocalWallet() {
-            PortfolioHeader()
-        }else {
-            NoWalletView()
+        Group {
+            if fetcher.isWalletLoaded {
+                PortfolioHeader()
+            }else {
+                NoWalletView()
+            }
         }
     }
 }

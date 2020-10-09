@@ -49,6 +49,14 @@ struct NoWalletView: View {
             }
         }
         .padding()
+        .onReceive(NotificationCenter.default.publisher(for: .importedWallet), perform: { _ in
+            if TezosService.shared.isObservationMode {
+                
+            }
+            showingImportWallet = false
+            showingCreateWallet = false
+            TezosService.shared.fetchBalance()
+        })
     }
 }
 

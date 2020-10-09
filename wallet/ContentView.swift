@@ -8,17 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var tabIndex = 0
     var body: some View {
-        TabView {
+        TabView(selection:$tabIndex) {
             Portfolio().tabItem {
                 Image(systemName: "note")
                 Text("Assets")
-            }
+            }.tag(0)
             Settings().tabItem {
-                Image(systemName: "gear")
+                Image(systemName: "gearshape")
                 Text("Settings")
-            }
+            }.tag(1)
         }
+        .onReceive(NotificationCenter.default.publisher(for: .removedWallet), perform: { _ in
+            tabIndex = 0
+        })
     }
 }
 

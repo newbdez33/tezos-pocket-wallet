@@ -8,15 +8,42 @@
 import SwiftUI
 
 struct Settings: View {
-
+    @ObservedObject var fetcher = TezosService.shared
     //TODO api endpoint will be automaticly managed by firebase remote config
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("No content")
+            if fetcher.isWalletLoaded {
+                VStack {
+                    HStack {
+                        Spacer(minLength: 10)
+                        Button(action: {
+                            User.pkh.value = nil
+                            TezosService.shared.isObservationMode = false
+                            TezosService.shared.isWalletLoaded = false
+                            TezosService.shared.removeWalletFromLocal()
+                            NotificationCenter.default.post(name: .removedWallet, object: nil)
+                        }, label: {
+                            Text("Remove my wallet")
+                                .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
+                                    .foregroundColor(Color.white)
+                                    .background(Color.accentColor)
+                                    .cornerRadius(7)
+                        })
+                        Spacer(minLength: 10)
+                    }
+                    if fetcher.isObservationMode {
+                        Text("You wallet is in Observation mode.")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                            .padding(.top, 2)
+                    }
+                }
+                .navigationTitle("Settings")
+            }else {
+                Text("No wallet imported/created yet.")
+                    .navigationTitle("Settings")
             }
-            .navigationTitle("Settings")
         }
     }
 }
