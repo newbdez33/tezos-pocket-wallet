@@ -24,10 +24,10 @@ struct Settings: View {
                             TezosService.shared.removeWalletFromLocal()
                             NotificationCenter.default.post(name: .removedWallet, object: nil)
                         }, label: {
-                            Text("Remove my wallet")
+                            Text("REMOVE WALLET")
                                 .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
                                     .foregroundColor(Color.white)
-                                    .background(Color.accentColor)
+                                    .background(Color.red)
                                     .cornerRadius(7)
                         })
                         Spacer(minLength: 10)
