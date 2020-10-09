@@ -7,16 +7,18 @@
 
 import Foundation
 import TezosSwift
+import KeychainSwift
 
 public class TezosService: ObservableObject {
     static let shared = TezosService()
+    
     @Published var balance:String = "0"
     @Published var isObservationMode = false
     @Published var isWalletLoaded = false
     
     public var wallet:Wallet?
     private let tezos:TezosClient?
-    
+    private let keychain = KeychainSwift()
 
     private init() {
         tezos = TezosClient(remoteNodeURL: Constants.defaultNodeURL)
@@ -30,19 +32,27 @@ public class TezosService: ObservableObject {
         balance = ""
         isObservationMode = false
         wallet = nil
+        keychain.delete(Constants.keyWalletMnemonic)
+        keychain.delete(Constants.keyWalletPassphrase)
     }
     
     public func loadLocalWallet() -> Bool {
         if isObservationMode {
             return true
         }
+        if let m = keychain.get(Constants.keyWalletMnemonic), let p = keychain.get(Constants.keyWalletPassphrase) {
+            wallet = Wallet(mnemonic: m, passphrase: p)
+        }
+        
         return wallet != nil
     }
     
     @discardableResult
     public func createWallet(_ password:String) -> Bool {
-        if let w = Wallet(passphrase: password) {
+        if let w = Wallet(passphrase: password), let m = w.mnemonic {
             wallet = w
+            keychain.set(m, forKey: Constants.keyWalletMnemonic)
+            keychain.set(password, forKey: Constants.keyWalletPassphrase)
             fetchBalance()
             return true
         }

@@ -26,6 +26,7 @@
 		8530470A252FEE080045DC7E /* Font+wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85304709252FEE080045DC7E /* Font+wallet.swift */; };
 		85304711252FFF430045DC7E /* WalletUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85304710252FFF430045DC7E /* WalletUtil.swift */; };
 		85304715253002F10045DC7E /* Notification+wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85304714253002F10045DC7E /* Notification+wallet.swift */; };
+		857D79A125306501002FDA3D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 857D79A025306501002FDA3D /* KeychainSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				857D79A125306501002FDA3D /* KeychainSwift in Frameworks */,
 				853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */,
 				853046EE252EEF720045DC7E /* OneStore in Frameworks */,
 			);
@@ -187,6 +189,7 @@
 			packageProductDependencies = (
 				853046D6252DB2BD0045DC7E /* TezosSwift */,
 				853046ED252EEF720045DC7E /* OneStore */,
+				857D79A025306501002FDA3D /* KeychainSwift */,
 			);
 			productName = wallet;
 			productReference = 853046C2252DB27A0045DC7E /* wallet.app */;
@@ -218,6 +221,7 @@
 			packageReferences = (
 				853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */,
 				853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */,
+				857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = 853046C3252DB27A0045DC7E /* Products */;
 			projectDirPath = "";
@@ -466,6 +470,14 @@
 				kind = branch;
 			};
 		};
+		857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 19.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -478,6 +490,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */;
 			productName = OneStore;
+		};
+		857D79A025306501002FDA3D /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

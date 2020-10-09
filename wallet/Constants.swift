@@ -9,4 +9,6 @@ import Foundation
 
 enum Constants {
     static let defaultNodeURL = URL(string: "https://rpcalpha.tzbeta.net/")!
+    static let keyWalletMnemonic = "keyWalletMnemonic"
+    static let keyWalletPassphrase = "keyWalletPassphrase"
 }
