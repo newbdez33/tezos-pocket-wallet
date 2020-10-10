@@ -81,7 +81,7 @@ struct ImportMnemonic: View {
                     }
                     isLoading = true
                     DispatchQueue.global(qos: .userInitiated).async {
-                        let ret = TezosService.shared.createWallet(password)
+                        let ret = TezosService.shared.importWallet(mnemonic: key, password)
                         DispatchQueue.main.async {
                             isLoading = false
                             if ret  {

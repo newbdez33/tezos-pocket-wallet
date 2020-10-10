@@ -44,12 +44,19 @@ public class TezosService: ObservableObject {
             wallet = Wallet(mnemonic: m, passphrase: p)
             print("loaded \(wallet?.address ?? "nil")")
         }
+        if let k = keychain.get(Constants.keyWalletPrivateKey) {
+            wallet = Wallet(secretKey: k)
+            print("loaded \(wallet?.address ?? "nil")")
+        }
         
         return wallet != nil
     }
     
     @discardableResult
     public func createWallet(_ password:String) -> Bool {
+        if password == "" {
+            return false
+        }
         if let w = Wallet(passphrase: password), let m = w.mnemonic {
             wallet = w
             keychain.set(m, forKey: Constants.keyWalletMnemonic)
@@ -61,12 +68,30 @@ public class TezosService: ObservableObject {
     }
     
     @discardableResult
-    public func importWallet(_ mnemonic:String, _ password:String) -> Bool {
+    public func importWallet(mnemonic:String, _ password:String) -> Bool {
+        if mnemonic == "" {
+            return false
+        }
         if let w = Wallet(mnemonic: mnemonic, passphrase: password), let m = w.mnemonic {
             wallet = w
             print("imported \(w.address)")
             keychain.set(m, forKey: Constants.keyWalletMnemonic)
             keychain.set(password, forKey: Constants.keyWalletPassphrase)
+            fetchBalance()
+            return true
+        }
+        return false
+    }
+    
+    @discardableResult
+    public func importWallet(privateKey:String) -> Bool {
+        if privateKey == "" {
+            return false
+        }
+        if let w = Wallet(secretKey: privateKey) {
+            wallet = w
+            print("imported \(w.address)")
+            keychain.set(privateKey, forKey: Constants.keyWalletPrivateKey)
             fetchBalance()
             return true
         }
