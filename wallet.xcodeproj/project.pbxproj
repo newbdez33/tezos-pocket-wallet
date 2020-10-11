@@ -29,7 +29,9 @@
 		857D79A125306501002FDA3D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 857D79A025306501002FDA3D /* KeychainSwift */; };
 		857D79A425306FD2002FDA3D /* ImportMnemonic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79A325306FD2002FDA3D /* ImportMnemonic.swift */; };
 		857D79A825307026002FDA3D /* ImportPrivateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79A725307026002FDA3D /* ImportPrivateKey.swift */; };
-		857D79AC25308D51002FDA3D /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 857D79AB25308D51002FDA3D /* Introspect */; };
+		857D79CE2531A97F002FDA3D /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79CD2531A97F002FDA3D /* Receive.swift */; };
+		857D79D22531A9A9002FDA3D /* Send.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79D12531A9A9002FDA3D /* Send.swift */; };
+		857D79D725331FE7002FDA3D /* AppActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79D625331FE7002FDA3D /* AppActivityView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,9 @@
 		85304714253002F10045DC7E /* Notification+wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+wallet.swift"; sourceTree = "<group>"; };
 		857D79A325306FD2002FDA3D /* ImportMnemonic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportMnemonic.swift; sourceTree = "<group>"; };
 		857D79A725307026002FDA3D /* ImportPrivateKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportPrivateKey.swift; sourceTree = "<group>"; };
+		857D79CD2531A97F002FDA3D /* Receive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Receive.swift; sourceTree = "<group>"; };
+		857D79D12531A9A9002FDA3D /* Send.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Send.swift; sourceTree = "<group>"; };
+		857D79D625331FE7002FDA3D /* AppActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppActivityView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +67,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				857D79A125306501002FDA3D /* KeychainSwift in Frameworks */,
-				857D79AC25308D51002FDA3D /* Introspect in Frameworks */,
 				853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */,
 				853046EE252EEF720045DC7E /* OneStore in Frameworks */,
 			);
@@ -90,6 +94,7 @@
 		853046C4252DB27A0045DC7E /* wallet */ = {
 			isa = PBXGroup;
 			children = (
+				857D79D525331FDE002FDA3D /* Components */,
 				85304708252FEDDA0045DC7E /* Extensions */,
 				853046DA252EB83F0045DC7E /* Services */,
 				853046F0252EEF8E0045DC7E /* Models */,
@@ -136,6 +141,8 @@
 			children = (
 				853046E2252ECEF00045DC7E /* Portfolio.swift */,
 				853046FC252F169D0045DC7E /* PortfolioHeader.swift */,
+				857D79CD2531A97F002FDA3D /* Receive.swift */,
+				857D79D12531A9A9002FDA3D /* Send.swift */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -178,6 +185,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		857D79D525331FDE002FDA3D /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				857D79D625331FE7002FDA3D /* AppActivityView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -198,7 +213,6 @@
 				853046D6252DB2BD0045DC7E /* TezosSwift */,
 				853046ED252EEF720045DC7E /* OneStore */,
 				857D79A025306501002FDA3D /* KeychainSwift */,
-				857D79AB25308D51002FDA3D /* Introspect */,
 			);
 			productName = wallet;
 			productReference = 853046C2252DB27A0045DC7E /* wallet.app */;
@@ -231,7 +245,6 @@
 				853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */,
 				853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */,
 				857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				857D79AA25308D51002FDA3D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 853046C3252DB27A0045DC7E /* Products */;
 			projectDirPath = "";
@@ -268,12 +281,15 @@
 				853046DD252EB8DB0045DC7E /* Constants.swift in Sources */,
 				85304703252F2ABA0045DC7E /* ImportWallet.swift in Sources */,
 				853046E7252ECFB30045DC7E /* Settings.swift in Sources */,
+				857D79CE2531A97F002FDA3D /* Receive.swift in Sources */,
 				85304706252FE9FA0045DC7E /* ImportObservationMode.swift in Sources */,
+				857D79D22531A9A9002FDA3D /* Send.swift in Sources */,
 				857D79A825307026002FDA3D /* ImportPrivateKey.swift in Sources */,
 				85304700252F2AA50045DC7E /* CreateWallet.swift in Sources */,
 				8530470A252FEE080045DC7E /* Font+wallet.swift in Sources */,
 				853046FD252F169D0045DC7E /* PortfolioHeader.swift in Sources */,
 				853046F9252F14E50045DC7E /* NoWalletView.swift in Sources */,
+				857D79D725331FE7002FDA3D /* AppActivityView.swift in Sources */,
 				85304715253002F10045DC7E /* Notification+wallet.swift in Sources */,
 				853046F2252EEF9D0045DC7E /* User.swift in Sources */,
 			);
@@ -490,14 +506,6 @@
 				minimumVersion = 19.0.0;
 			};
 		};
-		857D79AA25308D51002FDA3D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -515,11 +523,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
-		};
-		857D79AB25308D51002FDA3D /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 857D79AA25308D51002FDA3D /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

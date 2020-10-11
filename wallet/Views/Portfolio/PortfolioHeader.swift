@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PortfolioHeader: View {
     @ObservedObject var fetcher = TezosService.shared
+    @State var showingReceive = false
+    @State var showingSend = false
     var body: some View {
         NavigationView {
             VStack(alignment:.leading, spacing:10) {
@@ -23,14 +25,21 @@ struct PortfolioHeader: View {
                     Spacer()
                 }
                 HStack {
-                    Button(action: {}, label: {
+                    Button(action: {
+                        showingReceive.toggle()
+                    }, label: {
                         Text("Receive")
                             .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
                                 .foregroundColor(Color.white)
                                 .background(Color.accentColor)
                                 .cornerRadius(7)
                     })
-                    Button(action: {}, label: {
+                    .sheet(isPresented: $showingReceive) {
+                        Receive()
+                    }
+                    Button(action: {
+                        showingSend.toggle()
+                    }, label: {
                         Text("Send")
                             .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
                                 .foregroundColor(Color.accentColor)
@@ -39,6 +48,9 @@ struct PortfolioHeader: View {
                                 RoundedRectangle(cornerRadius: 7).stroke().foregroundColor(.accentColor)
                             )
                     })
+                    .sheet(isPresented: $showingSend) {
+                        Send()
+                    }
                 }
             }
             .padding()
