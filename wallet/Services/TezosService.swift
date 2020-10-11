@@ -72,7 +72,9 @@ public class TezosService: ObservableObject {
         if mnemonic == "" {
             return false
         }
-        if let w = Wallet(mnemonic: mnemonic.trimmingCharacters(in: .whitespacesAndNewlines), passphrase: password), let m = w.mnemonic {
+        if let w = Wallet(mnemonic: mnemonic.trimmingCharacters(in: .whitespacesAndNewlines),
+                          passphrase: password.trimmingCharacters(in: .whitespacesAndNewlines)),
+           let m = w.mnemonic {
             wallet = w
             print("imported \(w.address)")
             keychain.set(m, forKey: Constants.keyWalletMnemonic)

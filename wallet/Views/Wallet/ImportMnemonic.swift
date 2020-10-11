@@ -10,6 +10,7 @@ import SwiftUI
 struct ImportMnemonic: View {
     @State private var key:String = ""
     @State private var password:String = ""
+    @State private var email:String = ""
     @State private var isShowingPassword = false
     @State private var isLoading = false
     var body: some View {
@@ -40,36 +41,48 @@ struct ImportMnemonic: View {
                         .opacity(0.8)
                     
                 }
-                Text("Password")
-                    .font(.appButton)
-                    .padding(.top, 10)
-                ZStack(alignment:.trailing) {
-                    if isShowingPassword {
-                        TextField("Wallet password", text: $password)
-                            .font(.appButton)
-                            .frame(height:30)
-                            .disabled(isLoading)
-                    } else {
-                        SecureField("Wallet password", text: $password)
-                            .font(.appButton)
-                            .frame(height:30)
-                            .disabled(isLoading)
-                    }
-                    Button(action: {
-                        isShowingPassword.toggle()
-                    }, label: {
-                        if isShowingPassword {
-                            Image(systemName: "eye")
-                                .foregroundColor(.secondary)
-                        }else {
-                            Image(systemName: "eye.slash")
-                                .foregroundColor(.secondary)
-                        }
-                        
-                    })
-                    
+                Group {
+                    Text("Email")
+                        .font(.appButton)
+                        .padding(.top, 10)
+                    TextField("Email(Optional)", text: $email)
+                        .font(.appButton)
+                        .frame(height:30)
+                        .disabled(isLoading)
+                    Divider()
                 }
-                Divider()
+                Group {
+                    Text("Password")
+                        .font(.appButton)
+                        .padding(.top, 10)
+                    ZStack(alignment:.trailing) {
+                        if isShowingPassword {
+                            TextField("Wallet password(Optional)", text: $password)
+                                .font(.appButton)
+                                .frame(height:30)
+                                .disabled(isLoading)
+                        } else {
+                            SecureField("Wallet password(Optional)", text: $password)
+                                .font(.appButton)
+                                .frame(height:30)
+                                .disabled(isLoading)
+                        }
+                        Button(action: {
+                            isShowingPassword.toggle()
+                        }, label: {
+                            if isShowingPassword {
+                                Image(systemName: "eye")
+                                    .foregroundColor(.secondary)
+                            }else {
+                                Image(systemName: "eye.slash")
+                                    .foregroundColor(.secondary)
+                            }
+                            
+                        })
+                        
+                    }
+                    Divider()
+                }
                 Text("Password strength is critical to guard your wallet. Please backup cautiously.")
                     .font(.footnote)
                     .foregroundColor(.secondary)
@@ -81,7 +94,7 @@ struct ImportMnemonic: View {
                     }
                     isLoading = true
                     DispatchQueue.global(qos: .userInitiated).async {
-                        let ret = TezosService.shared.importWallet(mnemonic: key, password)
+                        let ret = TezosService.shared.importWallet(mnemonic: key, "\(email)\(password)")
                         DispatchQueue.main.async {
                             isLoading = false
                             if ret  {
