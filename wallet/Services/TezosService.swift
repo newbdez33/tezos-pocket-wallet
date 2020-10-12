@@ -27,6 +27,24 @@ public class TezosService: ObservableObject {
         fetchBalance()
     }
     
+    public func send(amount:Double, recipient:String, block: @escaping (_ hash:String?, _ error:String?) -> Void ) {
+        guard let w = wallet else {
+            block(nil, "Wallet is missing")
+            return
+        }
+        debugPrint("\(amount), recipient:\(recipient)")
+        tezos?.send(amount: Tez(amount), to: recipient, from: w, completion: { (result) in
+            switch result {
+            case .success(let transactionHash):
+                    print(transactionHash)
+                    block(transactionHash, nil)
+                case .failure(let error):
+                    print("Sending Tezos failed with error: \(error)")
+                    block(nil, "\(error)")
+                }
+        })
+    }
+    
     public func removeWalletFromLocal() {
         isWalletLoaded = false
         balance = ""
@@ -34,6 +52,7 @@ public class TezosService: ObservableObject {
         wallet = nil
         keychain.delete(Constants.keyWalletMnemonic)
         keychain.delete(Constants.keyWalletPassphrase)
+        keychain.delete(Constants.keyWalletPrivateKey)
     }
     
     public func loadLocalWallet() -> Bool {
@@ -43,6 +62,9 @@ public class TezosService: ObservableObject {
         if let m = keychain.get(Constants.keyWalletMnemonic), let p = keychain.get(Constants.keyWalletPassphrase) {
             wallet = Wallet(mnemonic: m, passphrase: p)
             print("loaded \(wallet?.address ?? "nil")")
+        }
+        if wallet != nil {
+            return true
         }
         if let k = keychain.get(Constants.keyWalletPrivateKey) {
             wallet = Wallet(secretKey: k)
