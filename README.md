@@ -13,3 +13,7 @@
 * Support all token contracts on tezos blockchain.
 * Find all child addresses from wallet(mnemonic).
 * Export wallet
+
+### TO BE FIXED
+
+* Refresh wallet balance

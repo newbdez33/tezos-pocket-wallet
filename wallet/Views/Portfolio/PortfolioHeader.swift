@@ -55,6 +55,10 @@ struct PortfolioHeader: View {
             }
             .padding()
             .navigationTitle(Text("Assets"))
+            .onReceive(NotificationCenter.default.publisher(for: .transactionSent), perform: { _ in
+                showingSend = false
+                TezosService.shared.fetchBalance()
+            })
         }
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 
 extension Notification.Name {
+    static let transactionSent = Notification.Name("transactionSent")
     static let importedWallet = Notification.Name("importedWallet")
     static let removedWallet = Notification.Name("removedWallet")
 }
@@ -15,4 +16,5 @@ extension Notification.Name {
 @objc extension NSNotification {
     public static let importedWallet = Notification.Name.importedWallet
     public static let removedWallet = Notification.Name.removedWallet
+    public static let transactionSent = Notification.Name.transactionSent
 }

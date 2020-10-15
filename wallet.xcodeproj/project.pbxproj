@@ -11,7 +11,6 @@
 		853046C8252DB27A0045DC7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046C7252DB27A0045DC7E /* ContentView.swift */; };
 		853046CA252DB27C0045DC7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853046C9252DB27C0045DC7E /* Assets.xcassets */; };
 		853046CD252DB27C0045DC7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853046CC252DB27C0045DC7E /* Preview Assets.xcassets */; };
-		853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 853046D6252DB2BD0045DC7E /* TezosSwift */; };
 		853046DD252EB8DB0045DC7E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046DC252EB8DB0045DC7E /* Constants.swift */; };
 		853046E3252ECEF00045DC7E /* Portfolio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046E2252ECEF00045DC7E /* Portfolio.swift */; };
 		853046E7252ECFB30045DC7E /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853046E6252ECFB30045DC7E /* Settings.swift */; };
@@ -32,6 +31,7 @@
 		857D79CE2531A97F002FDA3D /* Receive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79CD2531A97F002FDA3D /* Receive.swift */; };
 		857D79D22531A9A9002FDA3D /* Send.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79D12531A9A9002FDA3D /* Send.swift */; };
 		857D79D725331FE7002FDA3D /* AppActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857D79D625331FE7002FDA3D /* AppActivityView.swift */; };
+		85E42BBB253810C5007C8CC5 /* TezosKit in Frameworks */ = {isa = PBXBuildFile; productRef = 85E42BBA253810C5007C8CC5 /* TezosKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				857D79A125306501002FDA3D /* KeychainSwift in Frameworks */,
-				853046D7252DB2BD0045DC7E /* TezosSwift in Frameworks */,
+				85E42BBB253810C5007C8CC5 /* TezosKit in Frameworks */,
 				853046EE252EEF720045DC7E /* OneStore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,9 +210,9 @@
 			);
 			name = wallet;
 			packageProductDependencies = (
-				853046D6252DB2BD0045DC7E /* TezosSwift */,
 				853046ED252EEF720045DC7E /* OneStore */,
 				857D79A025306501002FDA3D /* KeychainSwift */,
+				85E42BBA253810C5007C8CC5 /* TezosKit */,
 			);
 			productName = wallet;
 			productReference = 853046C2252DB27A0045DC7E /* wallet.app */;
@@ -242,9 +242,9 @@
 			);
 			mainGroup = 853046B9252DB27A0045DC7E;
 			packageReferences = (
-				853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */,
 				853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */,
 				857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */,
+				85E42BB9253810C5007C8CC5 /* XCRemoteSwiftPackageReference "tezoskit" */,
 			);
 			productRefGroup = 853046C3252DB27A0045DC7E /* Products */;
 			projectDirPath = "";
@@ -482,14 +482,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/newbdez33/TezosSwift";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/newbdez33/OneStore";
@@ -506,14 +498,17 @@
 				minimumVersion = 19.0.0;
 			};
 		};
+		85E42BB9253810C5007C8CC5 /* XCRemoteSwiftPackageReference "tezoskit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/newbdez33/tezoskit";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		853046D6252DB2BD0045DC7E /* TezosSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 853046D5252DB2BD0045DC7E /* XCRemoteSwiftPackageReference "TezosSwift" */;
-			productName = TezosSwift;
-		};
 		853046ED252EEF720045DC7E /* OneStore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 853046EC252EEF720045DC7E /* XCRemoteSwiftPackageReference "OneStore" */;
@@ -523,6 +518,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 857D799F25306501002FDA3D /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
+		};
+		85E42BBA253810C5007C8CC5 /* TezosKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85E42BB9253810C5007C8CC5 /* XCRemoteSwiftPackageReference "tezoskit" */;
+			productName = TezosKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

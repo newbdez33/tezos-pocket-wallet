@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import TezosSwift
+import TezosKit
 import KeychainSwift
 
 public class TezosService: ObservableObject {
@@ -17,11 +17,11 @@ public class TezosService: ObservableObject {
     @Published var isWalletLoaded = false
     
     public var wallet:Wallet?
-    private let tezos:TezosClient?
+    private let tezos:TezosNodeClient?
     private let keychain = KeychainSwift()
 
     private init() {
-        tezos = TezosClient(remoteNodeURL: Constants.defaultNodeURL)
+        tezos = TezosNodeClient(remoteNodeURL: Constants.defaultNodeURL, callbackQueue: DispatchQueue(label: "tezosqueue"))
         isObservationMode = User.pkh.value != nil
         isWalletLoaded = loadLocalWallet()
         fetchBalance()
@@ -33,16 +33,16 @@ public class TezosService: ObservableObject {
             return
         }
         debugPrint("\(amount), recipient:\(recipient)")
-        tezos?.send(amount: Tez(amount), to: recipient, from: w, completion: { (result) in
-            switch result {
-            case .success(let transactionHash):
-                    print(transactionHash)
-                    block(transactionHash, nil)
+        tezos?.send(amount: Tez(amount), to: recipient, from: w.address, signatureProvider: w, operationFeePolicy: .default) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let opHash):
+                    block(opHash, nil)
                 case .failure(let error):
-                    print("Sending Tezos failed with error: \(error)")
                     block(nil, "\(error)")
                 }
-        })
+            }
+        }
     }
     
     public func removeWalletFromLocal() {
@@ -123,18 +123,10 @@ public class TezosService: ObservableObject {
     }
     
     public func fetchBalance() {
-        var addr = ""
-        if let pkh = User.pkh.value {
-            isObservationMode = true
-            addr = pkh
-        }else {
-            guard let ad = wallet?.address else {
-                return
-            }
-            addr = ad
+        guard let w = self.wallet else {
+            return
         }
-        
-        tezos?.balance(of: addr, completion: { result in
+        tezos?.getBalance(wallet: w, completion: { (result) in
             switch result {
                 case .success(let balance):
                     DispatchQueue.main.async {
@@ -144,17 +136,5 @@ public class TezosService: ObservableObject {
                     print("Getting balance failed with error: \(error)")
                 }
         })
-    }
-    
-    private func fetchLatestBlock() {
-        tezos?.chainHead { result in
-            switch result {
-                case .success(let head):
-                    print(head.chainId)
-                    print(head.protocol)
-                case .failure(let error):
-                    print("failed with error:\(error)")
-                }
-        }
     }
 }
