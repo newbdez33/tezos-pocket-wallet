@@ -17,3 +17,4 @@
 ### TO BE FIXED
 
 * Refresh wallet balance
+* Launch app with restoring wallet is tooo sloooo. ( replace with KeychainWallet in TezosKit? )

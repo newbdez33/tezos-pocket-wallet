@@ -13,6 +13,7 @@ struct Send: View {
     @State var fee:String = ""
     @State private var isShowingFeeField = false
     @State private var isLoading = false
+    let fees = TezosService.currentDefaultFeesForTransaction()
     
     var body: some View {
         VStack(alignment:.leading) {
@@ -40,46 +41,9 @@ struct Send: View {
                     .font(.appPK)
             }
             Divider()
-//            if isShowingFeeField {
-//                Button(action: {
-//                    isShowingFeeField.toggle()
-//                    fee = "0"
-//                }, label: {
-//                    HStack(spacing:4) {
-//                        Image(systemName: "minus")
-//                            .foregroundColor(.secondary)
-//                            .font(.footnote)
-//                        Text("Operation fees")
-//                            .font(.footnote)
-//                            .foregroundColor(.secondary)
-//                    }
-//
-//                })
-//                    .padding(.top, 8)
-//                ZStack(alignment:.trailing) {
-//                    Text("XTZ")
-//                        .font(.appPK)
-//                        .foregroundColor(.secondary)
-//                    TextField("0", text: $fee)
-//                        .disabled(isLoading)
-//                        .font(.appPK)
-//                }
-//                Divider()
-//            }else {
-//                Button(action: {
-//                    isShowingFeeField.toggle()
-//                }, label: {
-//                    HStack(spacing:4) {
-//                        Image(systemName: "plus")
-//                            .foregroundColor(.secondary)
-//                            .font(.footnote)
-//                        Text("Default operation fees is 0")
-//                            .font(.footnote)
-//                            .foregroundColor(.secondary)
-//                    }
-//
-//                })
-//            }
+            Text("Default fees: \(fees[0]), gas limit: \(fees[1]), storage limit: \(fees[2])")
+                .font(.footnote)
+                .foregroundColor(.secondary)
             Button(action: {
                 if isLoading {
                     return

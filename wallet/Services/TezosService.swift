@@ -27,6 +27,11 @@ public class TezosService: ObservableObject {
         fetchBalance()
     }
     
+    public static func currentDefaultFeesForTransaction() -> [String] {
+        let opf = DefaultFeeProvider.fees(for: .transaction, in: .carthage)
+        return [opf.fee.humanReadableRepresentation, "\(opf.gasLimit)", "\(opf.storageLimit)"]
+    }
+    
     public func send(amount:Double, recipient:String, block: @escaping (_ hash:String?, _ error:String?) -> Void ) {
         guard let w = wallet else {
             block(nil, "Wallet is missing")
