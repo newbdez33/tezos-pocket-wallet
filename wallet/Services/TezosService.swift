@@ -42,12 +42,17 @@ public class TezosService: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let opHash):
+                    //https://carthage.tzkt.io/opJiKz7ZfCced3TNF4Vcm8grcBNPqntudEkw8nqwwE7JZ33socc
                     block(opHash, nil)
                 case .failure(let error):
                     block(nil, "\(error)")
                 }
             }
         }
+    }
+    
+    public func fetchOperations() {
+        //https://api.carthage.tzkt.io/v1/accounts/tz1dwzRWV7Abb1DsgKeYNXmzhVhx2QzfPN9z/operations
     }
     
     public func removeWalletFromLocal() {
@@ -128,6 +133,7 @@ public class TezosService: ObservableObject {
     }
     
     public func fetchBalance() {
+        //TODO replace with https://api.tzkt.io/v1/accounts
         guard let w = self.wallet else {
             return
         }
