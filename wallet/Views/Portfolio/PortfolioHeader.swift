@@ -12,49 +12,45 @@ struct PortfolioHeader: View {
     @State var showingReceive = false
     @State var showingSend = false
     var body: some View {
-        NavigationView {
-            VStack(alignment:.leading, spacing:10) {
-                HStack {
-                    VStack(alignment:.leading) {
-                        Text("\(fetcher.balance) XTZ")
-                            .font(.title)
-                        Text("total balance")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
-                    }
-                    Spacer()
+        VStack(alignment:.leading, spacing:10) {
+            HStack {
+                VStack(alignment:.leading) {
+                    Text("\(fetcher.balance) XTZ")
+                        .font(.title)
+                    Text("total balance")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
                 }
-                HStack {
-                    Button(action: {
-                        showingReceive.toggle()
-                    }, label: {
-                        Text("Receive")
-                            .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
-                                .foregroundColor(Color.white)
-                                .background(Color.accentColor)
-                                .cornerRadius(7)
-                    })
-                    .sheet(isPresented: $showingReceive) {
-                        Receive()
-                    }
-                    Button(action: {
-                        showingSend.toggle()
-                    }, label: {
-                        Text("Send")
-                            .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
-                                .foregroundColor(Color.accentColor)
-                                .cornerRadius(7)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 7).stroke().foregroundColor(.accentColor)
-                            )
-                    })
-                    .sheet(isPresented: $showingSend) {
-                        Send()
-                    }
+                Spacer()
+            }
+            HStack {
+                Button(action: {
+                    showingReceive.toggle()
+                }, label: {
+                    Text("Receive")
+                        .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
+                            .foregroundColor(Color.white)
+                            .background(Color.accentColor)
+                            .cornerRadius(7)
+                })
+                .sheet(isPresented: $showingReceive) {
+                    Receive()
+                }
+                Button(action: {
+                    showingSend.toggle()
+                }, label: {
+                    Text("Send")
+                        .frame(maxWidth: .infinity, minHeight: 44, maxHeight: 44, alignment: .center)
+                            .foregroundColor(Color.accentColor)
+                            .cornerRadius(7)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 7).stroke().foregroundColor(.accentColor)
+                        )
+                })
+                .sheet(isPresented: $showingSend) {
+                    Send()
                 }
             }
-            .padding()
-            .navigationTitle(Text("Assets"))
             .onReceive(NotificationCenter.default.publisher(for: .transactionSent), perform: { _ in
                 showingSend = false
                 TezosService.shared.fetchBalance()

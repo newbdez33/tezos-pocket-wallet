@@ -12,6 +12,7 @@ import KeychainSwift
 public class TezosService: ObservableObject {
     static let shared = TezosService()
     
+    @Published var operations:[Transaction] = []
     @Published var balance:String = "0"
     @Published var isObservationMode = false
     @Published var isWalletLoaded = false
@@ -24,7 +25,7 @@ public class TezosService: ObservableObject {
         tezos = TezosNodeClient(remoteNodeURL: Constants.defaultNodeURL, callbackQueue: DispatchQueue(label: "tezosqueue"))
         isObservationMode = User.pkh.value != nil
         isWalletLoaded = loadLocalWallet()
-        fetchBalance()
+        fetchAccountInfo()
     }
     
     public static func currentDefaultFeesForTransaction() -> [String] {
@@ -49,10 +50,6 @@ public class TezosService: ObservableObject {
                 }
             }
         }
-    }
-    
-    public func fetchOperations() {
-        //https://api.carthage.tzkt.io/v1/accounts/tz1dwzRWV7Abb1DsgKeYNXmzhVhx2QzfPN9z/operations
     }
     
     public func removeWalletFromLocal() {
@@ -93,7 +90,7 @@ public class TezosService: ObservableObject {
             wallet = w
             keychain.set(m, forKey: Constants.keyWalletMnemonic)
             keychain.set(password, forKey: Constants.keyWalletPassphrase)
-            fetchBalance()
+            fetchAccountInfo()
             return true
         }
         return false
@@ -111,7 +108,7 @@ public class TezosService: ObservableObject {
             print("imported \(w.address)")
             keychain.set(m, forKey: Constants.keyWalletMnemonic)
             keychain.set(password, forKey: Constants.keyWalletPassphrase)
-            fetchBalance()
+            fetchAccountInfo()
             return true
         }
         return false
@@ -126,10 +123,15 @@ public class TezosService: ObservableObject {
             wallet = w
             print("imported \(w.address)")
             keychain.set(privateKey, forKey: Constants.keyWalletPrivateKey)
-            fetchBalance()
+            fetchAccountInfo()
             return true
         }
         return false
+    }
+    
+    public func fetchAccountInfo() {
+        fetchBalance()
+        fetchOperationsHistory()
     }
     
     public func fetchBalance() {
@@ -147,5 +149,33 @@ public class TezosService: ObservableObject {
                     print("Getting balance failed with error: \(error)")
                 }
         })
+    }
+    
+    public func fetchOperationsHistory() {
+        //TODO replace with https://api.tzkt.io/v1/accounts
+        guard let w = self.wallet else {
+            return
+        }
+        guard let apiUrl = URL(string: "\(Constants.apiNodeURL.absoluteURL)/v1/accounts/\(w.address)/operations") else {
+            return
+        }
+        let req = URLRequest(url: apiUrl)
+        URLSession.shared.dataTask(with: req) { (data, response, err) in
+            do {
+                if let d = data {
+                    let decodedLists = try JSONDecoder().decode([Transaction].self, from: d)
+                    DispatchQueue.main.async { [weak self] in
+                        //print(decodedLists)
+                        self?.operations = decodedLists
+                    }
+                }else {
+                    print("No Data")
+                }
+            } catch {
+                let outputStr  = String(data: data!, encoding: String.Encoding.utf8) as String?
+                print(error)
+                print ("fetch operations api error: \(outputStr ?? "null response text")")
+            }
+        }.resume()
     }
 }

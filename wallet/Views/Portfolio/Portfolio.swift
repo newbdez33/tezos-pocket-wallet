@@ -10,13 +10,22 @@ import SwiftUI
 struct Portfolio: View {
     @ObservedObject var fetcher = TezosService.shared
     var body: some View {
-        Group {
+        
             if fetcher.isWalletLoaded {
-                PortfolioHeader()
+                NavigationView {
+                    VStack(alignment:.leading) {
+                        PortfolioHeader()
+                            .padding(.bottom, 10)
+                        Operations()
+                        Spacer()
+                    }
+                    .padding()
+                    .navigationTitle(Text("Assets"))
+                }
             }else {
                 NoWalletView()
             }
-        }
+        
     }
 }
 
